@@ -20,3 +20,29 @@
 Ответ должен быть напечатан как одно число.
 """
 
+ways = [0] * 21
+
+ways[3] = 1
+
+for i in range(4, 8):
+    ways[i] = ways[i-1] + ways[i-2]
+    if i % 2 == 0:
+        ways[i] += ways[i//2]
+
+    #if i == 10:
+    #    ways[i] = 0
+    #print(ways)
+
+prom = ways[7]
+ways = [0] * 21
+ways[7] = prom
+
+for i in range(8, 21):
+    ways[i] = ways[i - 1] + ways[i - 2]
+    if i % 2 == 0:
+        ways[i] += ways[i // 2]
+
+    if i == 10:
+        ways[i] = 0
+
+print(ways[20])

@@ -27,3 +27,17 @@
 Ответ должен быть напечатан как одно число.
 """
 
+ways = [0] * 104
+
+ways[103] = 1
+
+
+for i in range(102, 23, -1):
+    ways[i] = ways[i-5]
+    if i % 3 == 0:
+        ways[i] += ways[i // 3]
+    if i % 3 == 1:
+        ways[i] += ways[i + 2]
+    if i % 3 == 2:
+        ways[i] += ways[i + 1]
+    print(ways)
