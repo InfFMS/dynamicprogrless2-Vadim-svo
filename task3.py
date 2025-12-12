@@ -5,6 +5,10 @@
 - A: Найти целую часть от деления на 3 (num = num // 3)
 - B: Вычесть 3 (num = num - 3)
 
+обратно:
+А: умножить на 3 или умножить на 3 +1 или умножить на 3 +2
+В: +3 =)
+
 Программа для исполнителя - это последовательность команд.
 
 Траектория вычислений программы - это последовательность результатов выполнения 
@@ -18,6 +22,91 @@
 (Траектория может содержать 22 без 7, или 7 без 22, или не содержать ни того ни другого,
 но не может содержать оба числа одновременно)
 
+вариант ААА: +22 -7
+вариант БББ: -22 +7
+вариант С: -22 -7
+
 Ответ должен быть напечатан как одно число.
 """
+
+#AAA
+ways = [0]*68*3
+ways[4] = 1
+
+for i in range(4, 22):
+    if i == 7:
+        ways[i] = 0
+        continue
+    ways[i+3] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+
+
+road22 = ways[22]
+ways = [0]*68*3
+ways[22] = 1
+
+for i in range(22, 68):
+    if i == 7:
+        ways[i] = 0
+        continue
+    ways[i+3] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+
+AAA = (road22 * ways[68])
+
+
+#БББ
+ways = [0]*68*3
+ways[4] = 1
+
+for i in range(4, 7):
+    if i == 22:
+        ways[i] = 0
+        continue
+    ways[i+3] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+
+
+road22 = ways[7]
+ways = [0]*68*3
+ways[7] = 1
+
+for i in range(7, 68):
+    if i == 22:
+        ways[i] = 0
+        continue
+    ways[i+3] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+
+BBB = road22 * ways[68]
+
+
+#ВВВ
+ways = [0]*68*3
+ways[4] = 1
+
+for i in range(4, 68):
+    if i == 22:
+        ways[i] = 0
+        continue
+    if i == 7:
+        ways[i] = 0
+        continue
+    ways[i+3] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+
+CCC = ways[68]
+
+
+print(AAA + BBB + CCC)
 

@@ -14,3 +14,13 @@ C. Умножить на 2 (num = num * 2)
 Ответ должен быть напечатан как одно число.
 """
 
+ways = [0] * 41*2
+ways[8] = 1
+
+for i in range(8, 41):
+    ways[i+2] += ways[i]
+    ways[i+5] += ways[i]
+    if i*2 != 40:
+        ways[i*2] += ways[i]
+
+print(ways[40])

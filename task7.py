@@ -6,6 +6,11 @@
 - B: Найти целую часть от деления на 3 (num = num // 3)
 - C: Найти целую часть от деления на 4 (num = num // 4)
 
+обратно:
+А: +1
+В: *3 +1 или +2
+С: *4 +1 или +2 или +3
+
 Программа для исполнителя - это последовательность команд.
 
 Траектория вычислений программы - это последовательность результатов выполнения 
@@ -19,3 +24,38 @@
 Ответ должен быть напечатан как одно число.
 """
 
+ways = [0]*2026*4
+ways[25] = 1
+
+for i in range(25, 251):
+    if i == 42:
+        ways[i] = 0
+        continue
+    ways[i+1] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+    ways[i*4] += ways[i]
+    ways[i*4+1] += ways[i]
+    ways[i*4+2] += ways[i]
+    ways[i*4+3] += ways[i]
+
+road250 = ways[250]
+
+ways = [0]*2026*4
+ways[250] = 1
+
+for i in range(250, 2026):
+    if i == 42:
+        ways[i] = 0
+        continue
+    ways[i+1] += ways[i]
+    ways[i*3] += ways[i]
+    ways[i*3+1] += ways[i]
+    ways[i*3+2] += ways[i]
+    ways[i*4] += ways[i]
+    ways[i*4+1] += ways[i]
+    ways[i*4+2] += ways[i]
+    ways[i*4+3] += ways[i]
+
+print(ways[2025]*road250)

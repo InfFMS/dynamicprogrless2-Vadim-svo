@@ -22,3 +22,37 @@
 Ответ должен быть напечатан как одно число.
 """
 
+mas = [24, 32]
+sum = 0
+
+for l in mas:
+    ways = [0]*68*3
+    ways[16] = 1
+
+    for i in range(16, l):
+        if i in mas and i != l:
+            ways[i] = 0
+            continue
+        ways[i+1] += ways[i]
+        ways[i+2] += ways[i]
+        ways[i+4] += ways[i]
+        ways[i+8] += ways[i]
+
+
+    roadl = ways[l]
+    ways = [0]*68*3
+    ways[l] = 1
+
+    for i in range(l, 48):
+        if i in mas and i != l:
+            ways[i] = 0
+            continue
+        ways[i+1] += ways[i]
+        ways[i+2] += ways[i]
+        ways[i+4] += ways[i]
+        ways[i+8] += ways[i]
+
+    sum += (roadl * ways[48])
+
+
+print(sum)
