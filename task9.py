@@ -11,3 +11,23 @@ B. Умножить на 4 (num = num * 4)
 Ответ должен быть напечатан как одно число.
 """
 
+ways = [0]* 511 * 4
+ways[3] = 1
+
+for i in range(3, 200):
+    ways[i+2] += ways[i]
+    ways[i*4] += ways[i]
+
+road200 = ways[200]
+
+ways = [0]* 511 * 4
+ways[200] = 1
+
+for i in range(200, 511):
+    ways[i+2] += ways[i]
+    ways[i*4] += ways[i]
+
+print(road200 * ways[510])
+
+
+#am i fr weezard?
